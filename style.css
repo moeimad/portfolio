@@ -156,7 +156,7 @@ a {
   display: inline-block;
   width: 75px;
   height: 37.5px;
-  vertical-align: middle;
+  vertical-align: middle;  
 }
 
 .switch input {
@@ -176,16 +176,17 @@ a {
   -webkit-transition: .4s;
   transition: .4s;
   border-radius: 34px;
+  border: 2px solid #607176;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 32px;
-  width: 32px;
-  left: 15px;
-  bottom: 2.7px;
-  background-color: #ffffff;
+  height: 24px;
+  width: 24px;
+  left: 6px;
+  bottom: 4.7px;
+  background-color: #607176;
   -webkit-transition: .4s;
   transition: .4s;
   border-radius: 50%;
@@ -193,17 +194,18 @@ a {
 
 input:checked + .slider {
   background-color: #9de7da;
-  /* Customize the color to match your dark mode */
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #9de7da;
+  border: none;
   /* Customize the color to match your dark mode */
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(25px);
-  -ms-transform: translateX(25px);
-  transform: translateX(25px);
+  height: 32px;
+  width: 32px;
+  left: 3.9px;
+  bottom: 2.72px;
+  background-color: #ffffff;
+  -webkit-transform: translateX(36px);
+  -ms-transform: translateX(36px);
+  transform: translateX(36px);
 }
 
