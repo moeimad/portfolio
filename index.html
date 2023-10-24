@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/26f51cb26a.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <title>Mohamed Imad</title>
+</head>
+<body>
+</style>
+
+<div class="angry-grid">
+  <div id="item-0">&nbsp;
+    <p class="text">I'm <span class="name">Mohamed</span>, a UX/UI designer who specializes in creating visually stunning and user-friendly designs. Constantly inspired to push the boundaries and explore new design trends, I'm passionate about bringing fresh ideas to my work.</p>
+  </div>
+
+  <div class="grow" id="item-1">&nbsp;
+  <a href="mailto:hi@moeimad.com" target="_blank"><i class="ri-mail-line"></i></a>
+  </div>
+
+  <div id="item-2">&nbsp;
+  <a href="https://www.linkedin.com/in/mohamed-imad/" target="_blank"><i class="ri-linkedin-line"></i></a>
+  </div>
+
+  <div id="item-3" >&nbsp;
+  <a href="https://twitter.com/Hisoka_IQ" target="_blank"><i class="ri-twitter-x-line"></i></a>
+  </div>
+
+  <div id="item-4" class="magnet">&nbsp;
+    <div id="dark-mode-switch">
+      <label class="switch">
+        <input type="checkbox" onclick="toggleDarkMode()">
+        <span class="slider round"></span>
+        <span class="slider-thumb"></span>
+      </label>
+    </div>    
+  </div>
+  </div>
+</body>
+<script>
+
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+  }
+
+  class HoverButton {
+    
+  constructor(el) {
+    this.el = el;
+    this.hover = false;
+    this.calculatePosition();
+    this.attachEventsListener();
+  }
+  
+  attachEventsListener() {
+    window.addEventListener('mousemove', e => this.onMouseMove(e));
+    window.addEventListener('resize', e => this.calculatePosition(e));
+  }
+  
+  calculatePosition() {
+    gsap.set(this.el, {
+      x: 0,
+      y: 0,
+      scale: 1
+    });
+    const box = this.el.getBoundingClientRect();
+    this.x = box.left + (box.width * 0.5);
+    this.y = box.top + (box.height * 0.5);
+    this.width = box.width;
+    this.height = box.height;
+  }
+  
+  onMouseMove(e) {
+    let hover = false;
+    let hoverArea = (this.hover ? 0.7 : 0.5);
+    let x = e.clientX - this.x;
+    let y = e.clientY - this.y;
+    let distance = Math.sqrt( x*x + y*y );
+    if (distance < (this.width * hoverArea)) {
+       hover = true;
+        if (!this.hover) {
+          this.hover = true;
+        }
+        this.onHover(e.clientX, e.clientY);
+    }
+    
+    if(!hover && this.hover) {
+      this.onLeave();
+      this.hover = false;
+    }
+  }
+  
+  onHover(x, y) {
+    gsap.to(this.el,  {
+      x: (x - this.x) * 0.4,
+      y: (y - this.y) * 0.4,
+      scale: 1,
+      ease: 'power2.out',
+      duration: -10
+    });
+    this.el.style.zIndex = 10;
+  }
+  onLeave() {
+    gsap.to(this.el, {
+      x: 0,
+      y: 0,
+      scale: 1,
+      ease: 'elastic.out(1.2, 0.4)',
+      duration: -10
+    });
+    this.el.style.zIndex = 1;
+  }
+}
+
+const btn1 = document.querySelector('.magnet');
+new HoverButton(btn1);
+
+
+
+
+
+
+</script>
+</html>
